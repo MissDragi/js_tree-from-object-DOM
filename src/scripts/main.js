@@ -31,29 +31,33 @@ function createTree(element, data) {
 
   element.appendChild(ul);
 
-  for (const key in food) {
+  for (const key in data) {
     const li = document.createElement('li');
 
     li.textContent = key;
     ul.appendChild(li);
 
-    for (const subKey in food[key]) {
-      const subUl = document.createElement('ul');
-      const subLi = document.createElement('li');
+    if (typeof data[key] === 'object' && Object.keys(data[key]).length > 0) {
+      createTree(li, data[key]);
 
-      subLi.textContent = subKey;
-      subUl.appendChild(subLi);
-      li.appendChild(subUl);
+      // for (const subKey in data[key]) {
+      //   const subUl = document.createElement('ul');
+      //   const subLi = document.createElement('li');
 
-      for (const subSubKey in food[key][subKey]) {
-        const subSubLi = document.createElement('li');
-        const subSubUl = document.createElement('ul');
+      //   subLi.textContent = subKey;
+      //   subUl.appendChild(subLi);
+      //   li.appendChild(subUl);
 
-        subLi.appendChild(subSubUl);
-        subSubLi.textContent = subSubKey;
+      //   for (const subSubKey in data[key][subKey]) {
+      //     const subSubLi = document.createElement('li');
+      //     const subSubUl = document.createElement('ul');
 
-        subSubUl.appendChild(subSubLi);
-      }
+      //     subLi.appendChild(subSubUl);
+      //     subSubLi.textContent = subSubKey;
+
+      //     subSubUl.appendChild(subSubLi);
+      //   }
+      // }
     }
   }
 }
